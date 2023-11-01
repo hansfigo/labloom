@@ -1,0 +1,6 @@
+# Recommended to set PUBLIC_PROD to false due to hosting problem
+# Direkomendasikan untuk mengatur PUBLIC_PROD ke false karena kendala hosting
+PUBLIC_PROD=false
+
+
+
