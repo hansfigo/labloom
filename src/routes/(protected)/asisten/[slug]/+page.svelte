@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import CheckIcon from '$lib/components/icons/CheckIcon.svelte';
+	import DeleteIcon from '$lib/components/icons/DeleteIcon.svelte';
 	import EditIcon from '$lib/components/icons/EditIcon.svelte';
 	import { isEditingNim, isEditingTitle, toggleIsEditing } from '$lib/input';
 	import { Avatar } from '@skeletonlabs/skeleton';
@@ -14,6 +15,7 @@
 	let nim: HTMLInputElement;
 	let formName: HTMLFormElement;
 	let formNim: HTMLFormElement;
+	let formDelete: HTMLFormElement;
 
 	$: {
 		isEditingTitle.set(form?.isEditingName!);
@@ -24,7 +26,6 @@
 	let imageForm: any;
 
 	console.log(data.asisten.gambar);
-	
 </script>
 
 <svelte:head>
@@ -74,7 +75,6 @@
 				</div>
 			</div>
 			<div class="w-full container flex flex-col justify-center gap-8">
-				
 				<div class="w-full flex flex-col gap-4">
 					<p class="text-2xl font-semibold text-left">Nim</p>
 					{#if $isEditingNim}
@@ -167,15 +167,20 @@
 					<p class="text-2xl font-semibold text-left">Prodi</p>
 					<p class="text-2xl">{data.asisten.prodi}</p>
 				</div>
+				<form use:enhance method="post" bind:this={formDelete} action="?/deleteAsisten">
+					<button
+						on:click={() => formDelete.requestSubmit()}
+						type="button"
+						class="btn variant-filled-error"><DeleteIcon /></button
+					>
+				</form>
 			</div>
 		</div>
 		<div class="flex-1 w-full">
 			<h1>Jadwal Asisten</h1>
-			<button class="btn variant-ghost-primary mt-4 text-end ">Semua Jadwal</button>
+			<button class="btn variant-ghost-primary mt-4 text-end">Semua Jadwal</button>
 			<div class="flex flex-col mt-12">
-				<div class="card h-[20vh]">
-					Test
-				</div>
+				<div class="card h-[20vh]">Test</div>
 			</div>
 		</div>
 	</div>

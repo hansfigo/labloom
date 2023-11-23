@@ -105,6 +105,28 @@ export const actions = {
         console.log(responseData);
 
     },
+    deleteAsisten: async ({ params }) => {
+        console.log("Delete");
+
+        const nim = params.slug
+
+        const response = await fetch(`${apiUrl}/asisten/delete`, {
+            method: 'POST',
+            body: JSON.stringify({nim : nim})
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.statusText}`);
+        }
+
+        const responseData = await response.text();
+
+        console.log("DEL RES : ",responseData);
+
+        throw redirect(302, '/admin')
+
+    },
+
 
     post: async ({ request }) => {
         const data = await request.formData();

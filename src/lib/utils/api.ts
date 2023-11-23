@@ -1,6 +1,6 @@
-import { nama, clearInputValue, nim, prodi } from "$lib/input";
-import { apiUrl } from "$lib/utils/url";
+import { clearInputValue, nama, nim, prodi } from "$lib/input";
 import { asisten, isEdit, isError, isNative } from "$lib/stores/store";
+import { apiUrl } from "$lib/utils/url";
 import { get } from "svelte/store";
 
 
@@ -61,14 +61,17 @@ const handleSend = async (files: any) => {
 
 
 const deleteData = async (targetNim: string) => {
-    const url = `${apiUrl}/main.php?nim=${targetNim}`
+    const url = `${apiUrl}/asisten/delete`
     const response = await fetch(url, {
-        method: 'DELETE'
+        method: 'POST',
+        body: JSON.stringify({ nim: nim })
     });
 
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+    console.log(response);
 
     const x = await fetchUpdatedData();
 
@@ -111,4 +114,5 @@ const updateData = async (targetNim: string) => {
     isEdit.set(!get(isEdit));
 };
 
-export { handleSend, fetchUpdatedData, deleteData, updateData }
+export { deleteData, fetchUpdatedData, handleSend, updateData };
+

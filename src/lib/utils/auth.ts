@@ -74,13 +74,15 @@ const credentialStore = () => {
             token: token
         };
 
-        const url = `http://localhost:8080/getCookies`;
+
+        const url = `http://localhost:8080/admin/getCookies`;
 
         const requestOptions = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify(data)
         };
 
         const response = await fetch(url, requestOptions);
@@ -95,7 +97,7 @@ const credentialStore = () => {
 
         return {
             response: response,
-            responseData : responseData
+            responseData: responseData
         };
 
     }
@@ -114,7 +116,7 @@ const credentialStore = () => {
             body: JSON.stringify(data)
         };
 
-        const url = 'http://localhost:8080/createCookies';
+        const url = 'http://localhost:8080/admin/createCookies';
 
         const response = await fetch(url, requestOptions);
 
@@ -131,7 +133,7 @@ const credentialStore = () => {
 
         return {
             response: response,
-            responseData : responseData
+            responseData: responseData
         };
     }
 
@@ -139,7 +141,7 @@ const credentialStore = () => {
         register: register,
         login: login,
         createCookies: createCookies,
-        getUserDataFromCookies : getUserDataFromCookies
+        getUserDataFromCookies: getUserDataFromCookies
     }
 }
 

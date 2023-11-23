@@ -13,7 +13,7 @@ export const handle: Handle = async ({ resolve, event }) => {
 
     if (username) {
         event.locals.username = {
-            username : username.responseData
+            username : username.responseData.username
         }
     }
     

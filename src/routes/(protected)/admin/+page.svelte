@@ -87,9 +87,9 @@
 									<td>{row.nim}</td>
 									<td>{row.nama}</td>
 									<td>{row.prodi}</td>
-									<td>
-										<div class="flex gap-2">
-											<button
+									<td class="z-20 ">
+										<div class="flex absolute gap-2">
+											<!-- <button
 												type="button"
 												class="btn variant-filled-error"
 												on:click={() => {
@@ -97,7 +97,7 @@
 														deleteData(row.nim);
 													}
 												}}><DeleteIcon /></button
-											>
+											> -->
 										</div></td
 									>
 								</tr>
