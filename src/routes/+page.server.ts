@@ -4,7 +4,11 @@ import type { PageServerLoad } from './$types';
 export let ssr = true
 
 export const load = (async ({ locals }) => {
-    const url = `${apiUrl}/main.php`
+    // const url = `${apiUrl}/main.php`
+	const url = `${apiUrl}/asisten`
+
+	console.log(url);
+	
 
 	const res = await fetch(url)
 

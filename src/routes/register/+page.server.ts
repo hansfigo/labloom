@@ -35,8 +35,6 @@ export const actions = {
 
         const res = (await register).response
 
-
-
         if (!res.ok) {
             const errorMsg = await res.json()
             return fail(400, { invalid: true, message: errorMsg.message })

@@ -4,14 +4,12 @@ import type { PageServerLoad } from './$types';
 export let ssr = true
 
 export const load = (async ({ locals }) => {
-    const url = `${apiUrl}/main.php`
+    const url = `${apiUrl}/asisten `
 
     const res = await fetch(url)
 
     const data = await res.json()
 
-    console.log("DATA ADMINNN",data);
-    
     return { data, user: locals.username.username };
 }) satisfies PageServerLoad;
 
@@ -31,7 +29,6 @@ export const actions = {
         formData.append('nim', nim);
         formData.append('prodi', prodi);
         formData.append('gambar', gambar);
-
 
         const response = await fetch(`${apiUrl}/main.php`, {
             method: 'POST',

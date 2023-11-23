@@ -18,7 +18,7 @@ const credentialStore = () => {
             body: JSON.stringify(data)
         };
 
-        const url = 'http://localhost:8000/login.php';
+        const url = 'http://localhost:8080/admin/login';
 
         const response = await fetch(url, requestOptions);
 
@@ -50,7 +50,7 @@ const credentialStore = () => {
             body: JSON.stringify(data)
         };
 
-        const url = 'http://localhost:8000/register.php';
+        const url = 'http://localhost:8080/admin/register';
 
         const response = await fetch(url, requestOptions);
 
@@ -74,7 +74,7 @@ const credentialStore = () => {
             token: token
         };
 
-        const url = `http://localhost:8000/cookies.php?token=${token}`;
+        const url = `http://localhost:8080/getCookies`;
 
         const requestOptions = {
             method: 'GET',
@@ -114,7 +114,7 @@ const credentialStore = () => {
             body: JSON.stringify(data)
         };
 
-        const url = 'http://localhost:8000/cookies.php';
+        const url = 'http://localhost:8080/createCookies';
 
         const response = await fetch(url, requestOptions);
 

@@ -1,7 +1,7 @@
 import { auth } from '$lib/utils/auth';
 import { fail, redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 import { v4 as uuidv4 } from 'uuid';
+import type { PageServerLoad } from './$types';
 
 
 export const load = (async ({ locals }) => {
@@ -45,7 +45,7 @@ export const actions = {
 
         const token = uuidv4()
 
-        auth.createCookies("hans.figo", token)
+        auth.createCookies(username.toString(), token)
 
         cookies.set('session', token)
 

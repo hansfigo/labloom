@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
+	import CheckIcon from '$lib/components/icons/CheckIcon.svelte';
+	import EditIcon from '$lib/components/icons/EditIcon.svelte';
+	import { isEditingNim, isEditingTitle, toggleIsEditing } from '$lib/input';
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import type { ActionData, PageData } from './$types';
-	import { goto } from '$app/navigation';
-	import EditIcon from '$lib/components/icons/EditIcon.svelte';
-	import { enhance } from '$app/forms';
-	import { isEditingTitle, isEditingNim, toggleIsEditing } from '$lib/input';
-	import CheckIcon from '$lib/components/icons/CheckIcon.svelte';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -22,6 +22,9 @@
 
 	let fileinput: any;
 	let imageForm: any;
+
+	console.log(data.asisten.gambar);
+	
 </script>
 
 <svelte:head>
@@ -71,50 +74,7 @@
 				</div>
 			</div>
 			<div class="w-full container flex flex-col justify-center gap-8">
-				<div class="w-full flex flex-col gap-4">
-					<p class="p-form">Nama Asisten</p>
-					{#if $isEditingTitle}
-						<div class=" justify-between items-center">
-							<form
-								bind:this={formName}
-								class="flex gap-4"
-								use:enhance
-								action="?/update"
-								method="post"
-							>
-								<input
-									class="bg-transparent border-0 px-0 text-2xl focus:border-primary-500 w-full"
-									value={data.asisten.nama}
-									type="text"
-									on:blur={() => {
-										formName.requestSubmit();
-										toggleIsEditing('nama');
-									}}
-									bind:this={name}
-									name="nama"
-								/>
-								<button type="submit" class="text-black">
-									<CheckIcon />
-								</button>
-							</form>
-						</div>
-					{:else}
-						<div class="flex justify-between items-center">
-							<p class="text-2xl">{data.asisten.nama}</p>
-							<button
-								on:click={() => {
-									toggleIsEditing('nama');
-									setTimeout(() => {
-										name.focus();
-									}, 100);
-								}}
-								class="flex gap-2 items-center"
-							>
-								<EditIcon />
-							</button>
-						</div>
-					{/if}
-				</div>
+				
 				<div class="w-full flex flex-col gap-4">
 					<p class="text-2xl font-semibold text-left">Nim</p>
 					{#if $isEditingNim}
@@ -160,6 +120,50 @@
 					{/if}
 				</div>
 				<div class="w-full flex flex-col gap-4">
+					<p class="p-form">Nama Asisten</p>
+					{#if $isEditingTitle}
+						<div class=" justify-between items-center">
+							<form
+								bind:this={formName}
+								class="flex gap-4"
+								use:enhance
+								action="?/updateNama"
+								method="post"
+							>
+								<input
+									class="bg-transparent border-0 px-0 text-2xl focus:border-primary-500 w-full"
+									value={data.asisten.nama}
+									type="text"
+									on:blur={() => {
+										formName.requestSubmit();
+										toggleIsEditing('nama');
+									}}
+									bind:this={name}
+									name="nama"
+								/>
+								<button type="submit" class="text-black">
+									<CheckIcon />
+								</button>
+							</form>
+						</div>
+					{:else}
+						<div class="flex justify-between items-center">
+							<p class="text-2xl">{data.asisten.nama}</p>
+							<button
+								on:click={() => {
+									toggleIsEditing('nama');
+									setTimeout(() => {
+										name.focus();
+									}, 100);
+								}}
+								class="flex gap-2 items-center"
+							>
+								<EditIcon />
+							</button>
+						</div>
+					{/if}
+				</div>
+				<div class="w-full flex flex-col gap-4">
 					<p class="text-2xl font-semibold text-left">Prodi</p>
 					<p class="text-2xl">{data.asisten.prodi}</p>
 				</div>
@@ -169,7 +173,7 @@
 			<h1>Jadwal Asisten</h1>
 			<button class="btn variant-ghost-primary mt-4 text-end ">Semua Jadwal</button>
 			<div class="flex flex-col mt-12">
-				<div class="card h-24 ">
+				<div class="card h-[20vh]">
 					Test
 				</div>
 			</div>

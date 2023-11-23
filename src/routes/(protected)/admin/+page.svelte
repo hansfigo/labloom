@@ -1,14 +1,14 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import AddDataForm from '$lib/components/AddDataForm.svelte';
 	import EditForm from '$lib/components/EditForm.svelte';
-	import { clearInputValue, nama, nim, prodi } from '$lib/input.js';
-	import { asisten, currrentEditedData, isAdd, isEdit, isError } from '$lib/stores/store.js';
-	import { get } from 'svelte/store';
-	import { Avatar, LightSwitch } from '@skeletonlabs/skeleton';
-	import { goto } from '$app/navigation';
 	import DeleteIcon from '$lib/components/icons/DeleteIcon.svelte';
 	import EditIcon from '$lib/components/icons/EditIcon.svelte';
+	import { clearInputValue, nama, nim, prodi } from '$lib/input.js';
+	import { asisten, currrentEditedData, isAdd, isEdit, isError } from '$lib/stores/store.js';
 	import { deleteData } from '$lib/utils/api.js';
+	import { Avatar, LightSwitch } from '@skeletonlabs/skeleton';
+	import { get } from 'svelte/store';
 
 	export let data;
 	$: asisten.set(data.data);
@@ -61,8 +61,7 @@
 						<button
 							type="button"
 							on:click={() => {
-								isAdd.set(!$isAdd);
-								clearInputValue();
+								goto('/asisten/add')
 							}}
 							class="btn variant-filled-primary text-white">Add +</button
 						>
@@ -90,11 +89,6 @@
 									<td>{row.prodi}</td>
 									<td>
 										<div class="flex gap-2">
-											<button
-												type="button"
-												class="btn variant-filled-success"
-												on:click={() => showEdit(i)}><EditIcon /></button
-											>
 											<button
 												type="button"
 												class="btn variant-filled-error"
